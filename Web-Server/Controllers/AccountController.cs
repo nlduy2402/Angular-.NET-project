@@ -50,7 +50,7 @@ namespace Web_Server.Controllers
             return CreateApplicationUserDTO(user);
         }
 
-        [HttpPost]
+        [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDto model)
         {
             if(await CheckEmailExistAsynnc(model.Email))
@@ -69,7 +69,7 @@ namespace Web_Server.Controllers
 
             var result = await _userManager.CreateAsync(userToAdd, model.Password);
             if (!result.Succeeded) return BadRequest(result.Errors);
-            return Ok("Create Account Success, You can login now !");
+            return Ok(new JsonResult(new {title="Accout Created", message ="Your account has been created, Login now !"}));
         }
 
         #region Private Helper Methods

@@ -1,0 +1,9 @@
+.custom-link {
+  color: #0762b2; /* Màu cam nhạt (#FFA07A là màu LightSalmon) */
+}
+.bold {
+  font-weight: bold; /* Chữ in đậm */
+}
+.active {
+  color: #d19c17f8 !important;
+}

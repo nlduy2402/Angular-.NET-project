@@ -12,6 +12,9 @@ using Web_Server.Services;
 using System.Text;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,15 +30,6 @@ builder.Services.AddDbContext<Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll", builder =>
-    {
-        builder.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader();
-    });
-});
 
 builder.Services.AddIdentityCore<User>(options => {
     options.Password.RequiredLength = 6;
@@ -70,6 +64,25 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     }
 
 );
+
+builder.Services.AddCors();
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.InvalidModelStateResponseFactory = actionContext =>
+    {
+        var errors = actionContext.ModelState
+        .Where(x => x.Value.Errors.Count > 0)
+        .SelectMany(x => x.Value.Errors)
+        .Select(x => x.ErrorMessage).ToArray();
+
+        var toReturn = new
+        {
+            Errors = errors
+        };
+        return new BadRequestObjectResult(toReturn);
+    };
+
+});
 
 //builder.Services.AddSwaggerGen(c =>
 //{
@@ -109,7 +122,10 @@ if (app.Environment.IsDevelopment())
 
 //app.UseHttpsRedirection();
 
-app.UseCors("AllowAll");
+app.UseCors(options => {
+    options.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins(builder.Configuration["JWT:ClientUrl"]);
+});
+    
 app.UseRouting();
 
 app.UseAuthentication();
