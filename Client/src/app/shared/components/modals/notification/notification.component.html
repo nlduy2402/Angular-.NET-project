@@ -1,12 +1,20 @@
-    <!-- <div class="modal-header" [ngClass]="{'bg-success':isSuccess, 'bg-danger':!isSuccess}">
-      <h4 class="modal-title pull-left">{{ title }}</h4>
-      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
-        <span aria-hidden="true" class="visually-hidden">&times;</span>
-      </button>
+<div  #modal class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">{{
+            title
+          }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="bsModalRef.hide()"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          {{ message }}
+        </p>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn bg-1" (click)="bsModalRef.hide()" data-bs-dismiss="modal">Ok</button>
+      </div> -->
     </div>
-    <div class="modal-body">
-        {{message}}
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Ok</button>
-    </div> -->
+  </div>
+</div>

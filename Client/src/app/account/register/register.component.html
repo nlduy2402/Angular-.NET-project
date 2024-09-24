@@ -108,6 +108,7 @@
             type="password"
             placeholder="Password"
             class="form-control"
+            [class.is-invalid]="submitted && registerForm.get('password')?.errors"
           />
           <label for="password">Password</label>
           <span
@@ -119,11 +120,9 @@
             Password is required !
           </span>
           <span
-            class="text-danger"
+            class="text-danger" 
             *ngIf="
-              (submitted &&
-                registerForm.get('password')?.hasError('minlength')) ||
-              registerForm.get('password')?.hasError('maxlength')
+              (submitted && (registerForm.get('password')?.hasError('minlength') && registerForm.get('password')?.hasError('maxlength')))
             "
           >
             Last name is at least 6 characters and maximum 15 characters !
@@ -137,10 +136,11 @@
         </div>
 
         <div class="d-grid mt-4 px-1">
-          <button class="btn btn-lg btn-info" type="submit">
+          <button class="btn btn-lg bg-1" type="submit">
             Create Account
           </button>
         </div>
+        <app-notification></app-notification>
       </form>
     </main>
   </div>

@@ -8,7 +8,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
   declarations: [],
   imports: [
     CommonModule,
-    AccountRoutingModule, // Sử dụng routing module
+    AccountRoutingModule,
+    SharedModule
   ],
 })
 export class AccountModule {}

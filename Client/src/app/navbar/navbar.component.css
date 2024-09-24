@@ -7,3 +7,25 @@
 .active {
   color: #d19c17f8 !important;
 }
+.bg-1 {
+  background: #5194c1;
+  font-weight: 500;
+  
+}
+
+.bg-2 {
+  background: #38b73d;
+  font-weight: 500;
+}
+
+.nav-bg {
+  background-color: #DEE5D4;
+}
+
+.btn:hover {
+  background-color: #adc931; /* Màu nền khi hover */
+}
+
+.container {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}

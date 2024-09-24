@@ -69,7 +69,7 @@ namespace Web_Server.Controllers
 
             var result = await _userManager.CreateAsync(userToAdd, model.Password);
             if (!result.Succeeded) return BadRequest(result.Errors);
-            return Ok(new JsonResult(new {title="Accout Created", message ="Your account has been created, Login now !"}));
+            return Ok(new JsonResult(new {title="Accout Created", message ="Your account has been created, Login now !"})); 
         }
 
         #region Private Helper Methods

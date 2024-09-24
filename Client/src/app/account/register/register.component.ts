@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { AccountService } from '../account.service';
 import {
@@ -10,13 +10,19 @@ import {
 import { CommonModule } from '@angular/common';
 import { ValidationMessagesComponent } from '../../shared/components/errors/validation-messages/validation-messages.component';
 import { Router } from '@angular/router';
-//import { SharedService } from '../../shared/shared.service';
+import { NotificationComponent } from '../../shared/components/modals/notification/notification.component';
+
 
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ValidationMessagesComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ValidationMessagesComponent,
+    NotificationComponent
+],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
@@ -24,11 +30,11 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({});
   submitted = false;
   errorMessages: string[] = []; //
+  @ViewChild(NotificationComponent) notification?: NotificationComponent;
   constructor(
     private accountService: AccountService,
     private formBuilder: FormBuilder,
-    //private sharedService: SharedService,
-    private router : Router
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -77,16 +83,20 @@ export class RegisterComponent implements OnInit {
 
     if (this.registerForm.valid) {
       this.accountService.register(this.registerForm.value).subscribe({
-        next: (response) => {
-          //this.sharedService.showNotification(true, response.value.title, response.value.message);
-          console.log(response);
-          //this.router.navigateByUrl('/account/login');
+        next: (response: any) => {
+          this.notification?.openModal(
+            true,
+            response.value.title,
+            response.value.message
+          );
+          setTimeout(() => {
+            this.router.navigateByUrl('/account/login');
+          }, 2500); 
         },
         error: (error) => {
           if (error.error.errors) {
             this.errorMessages = error.error.errors;
-          }
-          else {
+          } else {
             this.errorMessages.push(error.error);
           }
         },
