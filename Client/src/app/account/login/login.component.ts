@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ValidationMessagesComponent } from '../../shared/components/errors/validation-messages/validation-messages.component';
 import { take } from 'rxjs';
@@ -30,16 +30,28 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({});
   submitted = false;
   errorMessages: string[] = []; //
+  returnUrl: string | undefined;
+
   @ViewChild(NotificationComponent) notification?: NotificationComponent;
   constructor(
     private accountService: AccountService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private activatRoute: ActivatedRoute
   ) {
     this.accountService.user$.pipe(take(1)).subscribe({
       next: (user: User | null) => { 
         if (user) { 
           this.router.navigateByUrl('/');
+        }
+        else {
+          this.activatRoute.queryParamMap.subscribe({
+            next: (params: any) => { 
+              if (params) {
+                this.returnUrl = params.get('')
+              }
+            }
+          })
         }
       }
     });
@@ -61,8 +73,13 @@ export class LoginComponent implements OnInit {
 
     if (this.loginForm.valid) {
     this.accountService.login(this.loginForm.value).subscribe({
-      next: _ => {
-        this.router.navigateByUrl('/');
+      next: (response: any) => {
+        if (this.returnUrl) {
+          this.router.navigateByUrl(this.returnUrl);
+        }
+        else {
+          this.router.navigateByUrl('/');
+        }
       },
       error: (error) => {
         if (error.error.errors) {

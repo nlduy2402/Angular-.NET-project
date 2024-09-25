@@ -11,6 +11,8 @@ import { CommonModule } from '@angular/common';
 import { ValidationMessagesComponent } from '../../shared/components/errors/validation-messages/validation-messages.component';
 import { Router } from '@angular/router';
 import { NotificationComponent } from '../../shared/components/modals/notification/notification.component';
+import { User } from '../../shared/models/User';
+import { take } from 'rxjs';
 
 
 
@@ -35,7 +37,15 @@ export class RegisterComponent implements OnInit {
     private accountService: AccountService,
     private formBuilder: FormBuilder,
     private router: Router
-  ) {}
+  ) {
+    this.accountService.user$.pipe(take(1)).subscribe({
+      next: (user: User | null) => {
+        if (user) {
+          this.router.navigateByUrl('/');
+        }
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.initializeForm();

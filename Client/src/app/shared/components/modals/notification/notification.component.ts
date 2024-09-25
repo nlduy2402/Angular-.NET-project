@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { SharedModule } from '../../../shared.module';
+import { SharedService } from '../../../shared.service';
 
 //  @ts-ignore
 const $: any = window['$']
@@ -10,6 +12,7 @@ const $: any = window['$']
   imports: [CommonModule],
   templateUrl: './notification.component.html',
   styleUrl: './notification.component.css',
+  providers: [SharedModule]
 })
 export class NotificationComponent {
   @ViewChild('modal') modal?: ElementRef;

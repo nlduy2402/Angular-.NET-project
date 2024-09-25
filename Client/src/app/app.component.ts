@@ -5,11 +5,17 @@ import { FooterComponent } from './footer/footer.component';
 import { CommonModule } from '@angular/common';
 
 import { AccountService } from './account/account.service';
+import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavbarComponent, FooterComponent],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    NavbarComponent,
+    FooterComponent
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -24,8 +30,7 @@ export class AppComponent implements OnInit {
     const jwt = this.accountService.getJWT();
     if (jwt) {
       this.accountService.refreshUser(jwt).subscribe({
-        next: (_) => {
-        },
+        next: (_) => {},
         error: (error) => {
           this.accountService.logout();
         },
