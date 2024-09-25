@@ -4,9 +4,9 @@ namespace Web_Server.DTOs.Account
 {
     public class LoginDto
     {
-        [Required]
+        [Required(ErrorMessage ="Username is Required !")]
         public string UserName { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Password is Required !")]
         public string Password { get; set; }
     }
 }

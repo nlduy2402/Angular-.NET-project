@@ -8,7 +8,6 @@
           height="80"
           src="images/Logo2.png"
           alt="logo"
-          
         />
       </a>
       <button class="navbar-toggler" type="button">
@@ -35,18 +34,46 @@
           </li>
         </ul>
 
-        <ul class="navbar-nav">
+        <ul class="navbar-nav" *ngIf="(accountService.user$ | async) === null">
           <li class="nav-item">
-            <button class="btn mx-2 bg-2" routerLink="/account/register">
+            <button
+              class="btn mx-2 bg-2"
+              routerLink="/account/register"
+              routerLinkActive="active"
+            >
               Crerate Account
             </button>
           </li>
           <li class="nav-item">
-            <button class="btn mx-2 bg-1" routerLink="/account/login">
+            <button
+              class="btn mx-2 bg-1"
+              routerLink="/account/login"
+              routerLinkActive="active"
+            >
               Login
             </button>
           </li>
         </ul>
+
+        <div
+          class="d-flex align-items-center"
+          *ngIf="accountService.user$ | async as user"
+        >
+          <a
+            style="
+              text-decoration: none;
+              cursor: pointer;
+              font-size: medium;
+              color: #436bc8;
+            "
+          >
+            Welcome
+            <span style="font-size: larger; font-weight: 600; color: #b67b9d">{{
+              user.lastName | titlecase
+            }}</span>
+          </a>
+          <a class="btn btn-logout ms-2" (click)="logout()">Logout</a>
+        </div>
       </div>
     </div>
   </nav>

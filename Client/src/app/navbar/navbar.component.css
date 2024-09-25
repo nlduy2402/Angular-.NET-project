@@ -5,7 +5,7 @@
   font-weight: bold; /* Chữ in đậm */
 }
 .active {
-  color: #d19c17f8 !important;
+  color: #cc2849f8 !important;
 }
 .bg-1 {
   background: #5194c1;
@@ -28,4 +28,10 @@
 
 .container {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+.btn-logout {
+  background-color: rgb(227, 73, 35);
+}
+.welcome-custom {
+  background-color: #5194c1;
 }

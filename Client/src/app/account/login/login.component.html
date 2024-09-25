@@ -1,4 +1,3 @@
-<a href="">123333333333</a>
 <app-notification></app-notification>
 
 <div class="d-flex justify-content-center">
@@ -14,14 +13,14 @@
             type="text"
             placeholder="Username or Email"
             class="form-control"
-            [class.is-invalid]="submitted && loginForm.get('username')?.errors"
+            [class.is-invalid]="submitted && loginForm.get('userName')?.errors"
           />
           <label for="userName">Username or Email </label>
           <span
             class="text-danger"
-            *ngIf="submitted && loginForm.get('username')?.hasError('required')"
+            *ngIf="submitted && loginForm.get('userName')?.hasError('required')"
           >
-            Username is required
+            Email is required !
           </span>
         </div>
 
@@ -38,7 +37,7 @@
             class="text-danger"
             *ngIf="submitted && loginForm.get('password')?.hasError('required')"
           >
-            Password is required
+            Password is required !
           </span>
         </div>
 
@@ -56,7 +55,7 @@
         </div>
 
         <div class="d-grid mt-4 px-1">
-          <button class="btn btn-lg btn-info" type="submit">Log in</button>
+          <button class="btn btn-lg btn-info" type="submit" style="color: aliceblue;">Log in</button>
         </div>
       </form>
 
