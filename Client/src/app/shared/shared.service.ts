@@ -1,7 +1,7 @@
 import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { NotificationComponent } from './components/modals/notification/notification.component';
-import { DOCUMENT } from '@angular/common';
+
 
 @Injectable({
   providedIn: 'root',

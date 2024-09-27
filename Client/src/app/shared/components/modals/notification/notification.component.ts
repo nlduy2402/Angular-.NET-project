@@ -3,7 +3,6 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { SharedModule } from '../../../shared.module';
 import { SharedService } from '../../../shared.service';
-
 //  @ts-ignore
 const $: any = window['$']
 @Component({

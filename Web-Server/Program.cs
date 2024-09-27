@@ -61,9 +61,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = false
 
         };
-    }
+    });
 
-);
+builder.Services.AddScoped<EmailService>();
 
 builder.Services.AddCors();
 builder.Services.Configure<ApiBehaviorOptions>(options =>
