@@ -14,7 +14,7 @@ namespace Web_Server.DTOs.Account
         [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", ErrorMessage ="Invalid Email structure !")]
         public string Email { get; set; }
         [Required]
-        [StringLength(15, MinimumLength = 6, ErrorMessage = "Password name must be at least {2} and maximum {1} characters !")]
+        [StringLength(15, MinimumLength = 6, ErrorMessage = "Password must be at least {2} and maximum {1} characters !")]
         public string Password { get; set; }
     }
 }
