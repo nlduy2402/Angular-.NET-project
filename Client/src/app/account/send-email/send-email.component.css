@@ -5,3 +5,7 @@
 .bg-1:hover {
     background-color: #6cc56e;
 }
+
+.text-1 {
+    color: rgb(215, 129, 17);
+}

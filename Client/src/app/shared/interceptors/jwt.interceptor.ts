@@ -17,7 +17,6 @@ export class JwtInterceptor implements HttpInterceptor {
     this.accountService.user$.pipe(take(1)).subscribe({
       next: user => {
         if (user) {
-          alert('Nhu nhau');
           request = request.clone({
             setHeaders: {
               'Content-Type': 'application/json',

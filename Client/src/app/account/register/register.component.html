@@ -113,19 +113,17 @@
           <label for="password">Password</label>
           <span
             class="text-danger"
-            *ngIf="
-              submitted && registerForm.get('password')?.hasError('required')
-            "
+            *ngIf="submitted && registerForm.get('password')?.hasError('required')"
           >
             Password is required !
           </span>
           <span
             class="text-danger" 
             *ngIf="
-              (submitted && (registerForm.get('password')?.hasError('minlength') && registerForm.get('password')?.hasError('maxlength')))
+              (submitted && (registerForm.get('password')?.hasError('minlength') ||  registerForm.get('password')?.hasError('maxlength')))
             "
           >
-            Last name is at least 6 characters and maximum 15 characters !
+            Password is at least 6 characters and maximum 15 characters !
           </span>
         </div>
 

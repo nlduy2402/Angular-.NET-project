@@ -11,10 +11,8 @@ import { CommonModule } from '@angular/common';
 import { ValidationMessagesComponent } from '../../shared/components/errors/validation-messages/validation-messages.component';
 import { Router } from '@angular/router';
 import { NotificationComponent } from '../../shared/components/modals/notification/notification.component';
-import { User } from '../../shared/models/User';
+import { User } from '../../shared/models/account/User';
 import { take } from 'rxjs';
-
-
 
 @Component({
   selector: 'app-register',
@@ -23,8 +21,8 @@ import { take } from 'rxjs';
     CommonModule,
     ReactiveFormsModule,
     ValidationMessagesComponent,
-    NotificationComponent
-],
+    NotificationComponent,
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
@@ -43,7 +41,7 @@ export class RegisterComponent implements OnInit {
         if (user) {
           this.router.navigateByUrl('/');
         }
-      }
+      },
     });
   }
 
@@ -101,7 +99,7 @@ export class RegisterComponent implements OnInit {
           );
           setTimeout(() => {
             this.router.navigateByUrl('/account/login');
-          }, 2500); 
+          }, 2500);
         },
         error: (error) => {
           if (error.error.errors) {

@@ -1,3 +1,11 @@
 .bg-1 {
 background-color:darkseagreen;
 }
+
+.header-false {
+    background-color: rgb(234, 69, 51);
+}
+
+.header-true {
+    background-color: rgb(95, 224, 67);
+}

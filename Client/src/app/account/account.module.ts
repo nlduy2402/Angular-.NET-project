@@ -6,10 +6,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    AccountRoutingModule,
-    SharedModule
-  ],
+  imports: [CommonModule, AccountRoutingModule, SharedModule],
 })
 export class AccountModule {}

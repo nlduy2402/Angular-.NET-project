@@ -89,7 +89,10 @@ namespace Web_Server.Controllers
             try {
                 if (await SendConfirmEmailAsync(userToAdd))
                 {
-                    return Ok(new JsonResult(new { title = "Accout Created", message = "Your account has been created, Please CONFIRM your email !" }));
+                    return Ok(new JsonResult(new { 
+                        title = "Accout Created", 
+                        message = "Your account has been created, Please CONFIRM your email !" 
+                    }));
                 }
                 return BadRequest("Fail to send email. Please contact admin !");
             }
@@ -184,7 +187,7 @@ namespace Web_Server.Controllers
             }
         }
 
-        [HttpPut("reset-passowrd")]
+        [HttpPut("reset-password")]
         public async Task<IActionResult> ResetPassword(ResetPasswordDto model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
@@ -210,6 +213,7 @@ namespace Web_Server.Controllers
             {
                 return BadRequest("Invalid Token. Please try again !");
             }
+
         }
 
 
